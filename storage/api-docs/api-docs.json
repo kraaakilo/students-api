@@ -1,0 +1,134 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Gestion d'etudiants",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/students": {
+            "get": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Get list of students",
+                "description": "Returns list of students",
+                "operationId": "75378cfd9c3d128e0846de3d32b101ec",
+                "responses": {
+                    "200": {
+                        "description": "Successfull Operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "auth_basic": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Create a student and return an id",
+                "description": "Create a student",
+                "operationId": "5e69d562cd0a6141ac0ffdd5a921d62b",
+                "requestBody": {
+                    "description": "Student object that needs to be added to the store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "surname": {
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "age": {
+                                        "type": "integer",
+                                        "example": "20"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "marc@gmail.com"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "698765432"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Yaounde"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfull Operation"
+                    },
+                    "422": {
+                        "description": "Invalid input"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "auth_basic": []
+                    }
+                ]
+            }
+        },
+        "/api/students/{student}": {
+            "get": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Get a student by id",
+                "description": "Returns a single student",
+                "operationId": "6159da8be33d56982b5879bc00a7dfd4",
+                "parameters": [
+                    {
+                        "name": "student",
+                        "in": "path",
+                        "description": "id of student to return",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfull Operation"
+                    },
+                    "404": {
+                        "description": "Student Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "auth_basic": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "auth_basic": {
+                "type": "apiKey",
+                "description": "Enter your api Key",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
